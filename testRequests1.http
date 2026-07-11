@@ -1,0 +1,24 @@
+### توجه: بعد از هر بار پاک کردن دیتابیس، id ها از 1 شروع می‌شن
+### بعد از POST، id واقعی رو از خروجی بردار و جای {id} بذار
+
+### ساخت یک کاربر جدید
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Sepehr",
+  "lastName": "Test",
+  "nationalId": "1234567890",
+  "phoneNumber": "09121234567",
+  "email": "test@test.com",
+  "dateOfBirth": "2000-01-01"
+}
+
+### گرفتن همه‌ی کاربرها
+GET http://localhost:8080/api/users
+
+### گرفتن یک کاربر با id
+GET http://localhost:8080/api/users/{id}
+
+### حذف یک کاربر
+DELETE http://localhost:8080/api/users/{id}
