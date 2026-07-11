@@ -76,9 +76,19 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-flyway</artifactId>
+            <!-- این starter ماژول auto-configuration مخصوص فلای‌وی رو میاره -->
+            <!-- بدون این، FlywayAutoConfiguration روی classpath نیست و فلای‌وی هیچ‌وقت اجرا نمیشه -->
+        </dependency>
+        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
+            <scope>runtime</scope>
+            <!-- درایور دیتابیس-اسپسیفیک فلای‌وی برای MySQL، فقط یک بار باید باشه -->
         </dependency>
+        <!-- تعریف تکراری flyway-mysql که اینجا بود حذف شد -->
+
     </dependencies>
 
     <build>
