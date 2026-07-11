@@ -28,7 +28,7 @@ CREATE TABLE account_type(
 );
 create table accounts(
                          account_id int auto_increment,
-                         user_id int not null ,
+                         user_id BIGINT not null ,
                          account_number char(16) not null unique ,
                          currency_id INT default 1,
                          balance decimal(15,2) default 0.00,
