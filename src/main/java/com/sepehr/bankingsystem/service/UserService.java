@@ -26,14 +26,12 @@ public class UserService {
 
     public User getUserById(Long id){
         Optional<User> result = userRepository.findById(id);
-        // یه بار findById صدا زده میشه، نتیجه‌ش تو یه متغیر ذخیره میشه
-        // به جای اینکه دوباره صداش بزنیم
 
         if (result.isEmpty()){
             throw new IllegalStateException("there aren't any user with this ID");
         }
         return result.get();
-        // چون بالا چک کردیم isEmpty نیست، اینجا مطمئنیم get() امنه
+
     }
 
     public List<User> getAllUsers(){
@@ -42,8 +40,7 @@ public class UserService {
 
     public void deleteUser(Long id){
         if (!userRepository.existsById(id)){
-            // existsById فقط چک میکنه ردیف هست یا نه، بدون گرفتن کل شیء
-            // سبک‌تر از findById برای این حالت
+
             throw new IllegalStateException("user with this ID doesn't exist");
         }
         userRepository.deleteById(id);
