@@ -22,12 +22,12 @@ CREATE TABLE currency(
 );
 CREATE TABLE account_type(
                              account_type_id INT AUTO_INCREMENT,
-                             account_type_name VARCHAR(20),
+                             account_type_name VARCHAR(20) NOT NULL ,
                              is_type_active BOOLEAN DEFAULT TRUE NOT NULL ,
                              CONSTRAINT pk_type PRIMARY KEY (account_type_id)
 );
 create table accounts(
-                         account_id int auto_increment,
+                         account_id BIGINT auto_increment,
                          user_id BIGINT not null ,
                          account_number char(16) not null unique ,
                          currency_id INT default 1,
@@ -52,7 +52,7 @@ CREATE TABLE transaction_type(
 );
 CREATE TABLE transactions(
                              transaction_id INT AUTO_INCREMENT,
-                             account_id INT NOT NULL ,
+                             account_id BIGINT NOT NULL ,
                              amount DECIMAL(15,2) NOT NULL ,
                              transaction_type_id INT NOT NULL ,
                              description VARCHAR(255),
