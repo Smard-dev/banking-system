@@ -1,6 +1,6 @@
 package com.sepehr.bankingsystem.controller;
 
-import com.sepehr.bankingsystem.entity.User;
+import com.sepehr.bankingsystem.entity.Users.User;
 import com.sepehr.bankingsystem.service.UserService;
 import org.springframework.web.bind.annotation.*;
 

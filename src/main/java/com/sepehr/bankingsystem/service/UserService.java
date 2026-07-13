@@ -1,7 +1,7 @@
 package com.sepehr.bankingsystem.service;
 
-import com.sepehr.bankingsystem.entity.User;
-import com.sepehr.bankingsystem.repository.UserRepository;
+import com.sepehr.bankingsystem.entity.Users.User;
+import com.sepehr.bankingsystem.repository.Users.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

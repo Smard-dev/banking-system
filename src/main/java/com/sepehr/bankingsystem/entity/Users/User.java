@@ -1,4 +1,4 @@
-package com.sepehr.bankingsystem.entity;
+package com.sepehr.bankingsystem.entity.Users;
 
 import jakarta.persistence.*;
 import lombok.Getter;
