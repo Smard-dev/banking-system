@@ -32,7 +32,7 @@ create table accounts(
                          account_number char(16) not null unique ,
                          currency_id INT default 1,
                          balance decimal(15,2) default 0.00,
-                         account_type_id int default 1 ,
+                         account_type_id int NOT NULL ,
                          status boolean default true  ,
                          created_at timestamp default current_timestamp,
 
@@ -40,7 +40,7 @@ create table accounts(
                          constraint fk_accounts_users foreign key (user_id) references users (user_id),
                          constraint fk_accounts_currency foreign key (currency_id) references currency (currency_id),
                          constraint fk_account_type foreign key (account_type_id) references account_type (account_type_id),
-                         constraint chk_accont_balance CHECK ( balance>= 0  )
+                         constraint chk_account_balance CHECK ( balance>= 0  )
 );
 
 
