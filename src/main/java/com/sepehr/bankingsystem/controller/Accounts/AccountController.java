@@ -1,14 +1,13 @@
-package com.sepehr.bankingsystem.controller;
+package com.sepehr.bankingsystem.controller.Accounts;
 
 import com.sepehr.bankingsystem.entity.Accounts.Account;
 import com.sepehr.bankingsystem.service.AccountService;
-import com.sepehr.bankingsystem.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-    @RequestMapping("/api/accounts")
+@RequestMapping("/api/accounts")
 
 public class AccountController {
     private final AccountService accountService;
