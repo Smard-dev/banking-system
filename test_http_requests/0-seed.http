@@ -1,0 +1,19 @@
+### ساخت کاربر پایه برای تست (فقط یک‌بار اجرا کن)
+# @name createUser
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Sepehr",
+  "lastName": "Test",
+  "nationalId": "1234567890",
+  "phoneNumber": "09121234567",
+  "email": "test@test.com",
+  "dateOfBirth": "2000-01-01"
+}
+
+> {%
+    client.global.set("testUserId", response.body.id);
+    // این خط id کاربر ساخته‌شده رو تو یه متغیر global به اسم testUserId ذخیره می‌کنه
+    // این متغیر تو همه‌ی فایل‌های دیگه هم قابل‌دسترسیه، تا وقتی IntelliJ باز باشه
+%}

@@ -1,0 +1,20 @@
+### ساخت حساب برای کاربری که تو seed ساختیم (بدون تزریق دوباره)
+# @name createAccount
+POST http://localhost:8080/api/accounts
+Content-Type: application/json
+
+{
+  "user": { "id": {{testUserId}} },
+  "accountNumber": "1234567890123456",
+  "accountType": { "typeId": 1 }
+}
+
+> {%
+    client.global.set("testAccountId", response.body.id);
+%}
+
+### گرفتن حساب ساخته‌شده
+GET http://localhost:8080/api/accounts/{{testAccountId}}
+
+### حذف حساب
+DELETE http://localhost:8080/api/accounts/{{testAccountId}}

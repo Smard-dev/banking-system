@@ -1,0 +1,29 @@
+### گرفتن کاربری که در seed ساختیم
+GET http://localhost:8080/api/users/{{testUserId}}
+
+### گرفتن همه‌ی کاربرها
+GET http://localhost:8080/api/users
+
+### ساخت یک کاربر جداگانه فقط برای تست حذف
+# @name createTempUser
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Temp",
+  "lastName": "ForDeleteTest",
+  "nationalId": "9999999999",
+  "phoneNumber": "09129999999",
+  "email": "temp@test.com",
+  "dateOfBirth": "1995-05-05"
+}
+
+> {%
+    client.global.set("tempUserId", response.body.id);
+%}
+
+### حذف همون کاربر موقت
+DELETE http://localhost:8080/api/users/{{tempUserId}}
+
+### تأیید حذف - باید دیگه پیدا نشه (باید خطا برگردونه)
+GET http://localhost:8080/api/users/{{tempUserId}}
