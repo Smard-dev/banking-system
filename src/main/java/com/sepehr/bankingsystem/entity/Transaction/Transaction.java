@@ -1,7 +1,6 @@
 package com.sepehr.bankingsystem.entity.Transaction;
 
 import com.sepehr.bankingsystem.entity.Accounts.Account;
-import com.sepehr.bankingsystem.entity.Transfers.TransactionType;
 import com.sepehr.bankingsystem.entity.Transfers.Transfer;
 import jakarta.persistence.*;
 import lombok.Getter;
