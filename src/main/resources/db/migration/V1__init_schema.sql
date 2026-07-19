@@ -51,7 +51,7 @@ CREATE TABLE transaction_type(
                                  CONSTRAINT pk_type PRIMARY KEY (transaction_type_id)
 );
 CREATE TABLE transactions(
-                             transaction_id INT AUTO_INCREMENT,
+                             transaction_id BIGINT AUTO_INCREMENT,
                              account_id BIGINT NOT NULL ,
                              amount DECIMAL(15,2) NOT NULL ,
                              transaction_type_id INT NOT NULL ,

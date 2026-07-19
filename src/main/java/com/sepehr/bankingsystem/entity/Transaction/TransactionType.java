@@ -11,6 +11,7 @@ import lombok.Setter;
 public class TransactionType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "transaction_type_id")
     private Integer id;
 
     @Column(name = "type_name",length = 10,nullable = false)
