@@ -1,0 +1,64 @@
+### گام ۱: ساخت حساب اول (مبدأ) با یه موجودی اولیه
+# @name createFromAccount
+POST http://localhost:8080/api/accounts
+Content-Type: application/json
+
+{
+  "user": { "id": {{testUserId}} },
+  "accountNumber": "1111222233334444",
+  "accountType": { "typeId": 1 }
+}
+
+> {%
+    client.global.set("fromAccountId", response.body.id);
+%}
+
+### گام ۲: ساخت حساب دوم (مقصد)
+# @name createToAccount
+POST http://localhost:8080/api/accounts
+Content-Type: application/json
+
+{
+  "user": { "id": {{testUserId}} },
+  "accountNumber": "5555666677778888",
+  "accountType": { "typeId": 1 }
+}
+
+> {%
+    client.global.set("toAccountId", response.body.id);
+%}
+
+### توجه مهم: چون موجودی اولیه‌ی حساب همیشه 0 است (طبق AccountService)،
+### قبل از تست انتقال باید دستی موجودی fromAccount رو زیاد کنیم
+### این کار رو با یه UPDATE مستقیم SQL انجام بده (چون هنوز endpoint واریز مستقیم نداریم):
+### UPDATE accounts SET balance = 100000 WHERE account_id = {{fromAccountId}}
+
+### گام ۳: ساخت درخواست انتقال (status می‌مونه PENDING)
+# @name createTransfer
+POST http://localhost:8080/api/transfers
+Content-Type: application/json
+
+{
+  "fromAccountId": {{fromAccountId}},
+  "toAccountId": {{toAccountId}},
+  "amount": 50000
+}
+
+> {%
+    client.global.set("transferId", response.body.id);
+%}
+
+### گام ۴: پردازش انتقال (اینجا واقعاً موجودی جابه‌جا میشه)
+POST http://localhost:8080/api/transfers/{{transferId}}/process
+
+### گام ۵: چک کردن نتیجه - باید status=SUCCESS باشه
+GET http://localhost:8080/api/transfers/{{transferId}}
+
+### گام ۶: چک کردن حساب مبدأ - باید موجودیش کم شده باشه
+GET http://localhost:8080/api/accounts/{{fromAccountId}}
+
+### گام ۷: چک کردن حساب مقصد - باید موجودیش زیاد شده باشه
+GET http://localhost:8080/api/accounts/{{toAccountId}}
+
+### گام ۸: تست تکراری پردازش کردن - باید خطا بده (چون دیگه PENDING نیست)
+POST http://localhost:8080/api/transfers/{{transferId}}/process
