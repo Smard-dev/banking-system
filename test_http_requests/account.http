@@ -4,9 +4,9 @@ POST http://localhost:8080/api/accounts
 Content-Type: application/json
 
 {
-  "user": { "id": {{testUserId}} },
+  "userId": 1,
   "accountNumber": "1234567890123456",
-  "accountType": { "typeId": 1 }
+  "accountTypeId": 1
 }
 
 > {%
