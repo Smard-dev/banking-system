@@ -1,7 +1,8 @@
-package com.sepehr.bankingsystem.controller;
+package com.sepehr.bankingsystem.controller.Users;
 
 import com.sepehr.bankingsystem.entity.Users.User;
 import com.sepehr.bankingsystem.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,10 +17,16 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser (@RequestBody User newUser){
+    public User createUser(@Valid @RequestBody UserCreateRequest request) {
+        User newUser = new User();
+        newUser.setFirstName(request.firstName());
+        newUser.setLastName(request.lastName());
+        newUser.setNationalId(request.nationalId());
+        newUser.setPhoneNumber(request.phoneNumber());
+        newUser.setEmail(request.email());
+        newUser.setDateOfBirth(request.dateOfBirth());
         return userService.registerUser(newUser);
     }
-
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id ){
         return userService.getUserById(id);

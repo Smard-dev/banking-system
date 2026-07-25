@@ -2,6 +2,7 @@ package com.sepehr.bankingsystem.controller.Transfers;
 
 import com.sepehr.bankingsystem.entity.Transfers.Transfer;
 import com.sepehr.bankingsystem.service.TransferService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class TransferController {
     }
 
     @PostMapping
-    public Transfer createTransfer(@RequestBody TransferRequest request) {
+    public Transfer createTransfer(@Valid @RequestBody TransferRequest request) {
         // این متد فقط رکورد Transfer با status=PENDING میسازه
         return transferService.creatTransfer(
                 request.fromAccountId(),
