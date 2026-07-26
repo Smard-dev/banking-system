@@ -62,3 +62,27 @@ GET http://localhost:8080/api/accounts/{{toAccountId}}
 
 ### گام ۸: تست تکراری پردازش کردن - باید خطا بده (چون دیگه PENDING نیست)
 POST http://localhost:8080/api/transfers/{{transferId}}/process
+
+
+### تست: ساخت کاربر با national_id غلط (باید خطای واضح بده، نه 500)
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Test",
+  "lastName": "Invalid",
+  "nationalId": "123",
+  "phoneNumber": "09121234567",
+  "email": "invalid@test.com",
+  "dateOfBirth": "2000-01-01"
+}
+
+### تست: ساخت حساب برای کاربری که وجود نداره (باید 404 بده)
+POST http://localhost:8080/api/accounts
+Content-Type: application/json
+
+{
+  "userId": 99999,
+  "accountNumber": "9999999999999999",
+  "accountTypeId": 1
+}
