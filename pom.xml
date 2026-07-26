@@ -88,6 +88,11 @@
             <!-- درایور دیتابیس-اسپسیفیک فلای‌وی برای MySQL، فقط یک بار باید باشه -->
         </dependency>
         <!-- تعریف تکراری flyway-mysql که اینجا بود حذف شد -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>3.0.3</version>
+        </dependency>
 
     </dependencies>
 
