@@ -1,0 +1,33 @@
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: banking_system
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${DB_PASSWORD}"]
+      # این دستور هر چند ثانیه یه بار تلاش میکنه به MySQL پینگ بزنه
+      # تا وقتی جواب نده، MySQL "healthy" حساب نمیشه
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    depends_on:
+      mysql:
+        condition: service_healthy
+        # این خط کلیدیه: میگه "app رو استارت نکن تا مطمئن بشی mysql واقعا healthy شده"
+        # نه فقط اینکه container mysql وجود داره
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/banking_system?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      DB_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "8080:8080"
+
+volumes:
+  mysql_data:
