@@ -1,0 +1,2 @@
+INSERT INTO roles (role_code, role_name, description) VALUES ('CUS', 'CUSTOMER', 'Regular banking customer');
+INSERT INTO roles (role_code, role_name, description) VALUES ('ADM', 'ADMIN', 'System administrator');
