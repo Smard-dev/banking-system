@@ -16,17 +16,6 @@ public class UserController {
        this.userService = userService;
     }
 
-    @PostMapping
-    public User createUser(@Valid @RequestBody UserCreateRequest request) {
-        User newUser = new User();
-        newUser.setFirstName(request.firstName());
-        newUser.setLastName(request.lastName());
-        newUser.setNationalId(request.nationalId());
-        newUser.setPhoneNumber(request.phoneNumber());
-        newUser.setEmail(request.email());
-        newUser.setDateOfBirth(request.dateOfBirth());
-        return userService.registerUser(newUser);
-    }
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id ){
         return userService.getUserById(id);
